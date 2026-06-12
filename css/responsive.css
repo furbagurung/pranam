@@ -1,0 +1,59 @@
+/* Tablet and desktop responsive rules */
+@media (min-width: 720px) {
+  .nav-toggle {
+    display: none;
+  }
+
+  .nav-links {
+    position: static;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0;
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+  }
+
+  .hero-grid,
+  .split-layout,
+  .contact-grid {
+    grid-template-columns: 1.1fr 0.9fr;
+    align-items: center;
+  }
+
+  .product-grid,
+  .feature-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr auto;
+    align-items: end;
+  }
+}
+
+@media (max-width: 719px) {
+  .hero {
+    min-height: auto;
+  }
+
+  .hero-panel {
+    min-height: 330px;
+  }
+
+  .hero-card.large {
+    height: 160px;
+  }
+
+  .button-row,
+  .filter-bar {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .button,
+  .filter-button {
+    width: 100%;
+  }
+}

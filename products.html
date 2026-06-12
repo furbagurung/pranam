@@ -6,28 +6,15 @@
   <meta name="description" content="Explore Pranam dried fruits, dates powder, and dates coffee products.">
   <title>Products | Pranam</title>
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/responsive.css">
 </head>
 <body>
-  <!-- Site header and primary navigation -->
-  <header class="site-header">
-    <nav class="navbar container" aria-label="Primary navigation">
-      <a class="logo" href="index.html" aria-label="Pranam home">Pranam</a>
-      <button class="nav-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false" aria-controls="primary-menu">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-      <ul class="nav-links" id="primary-menu">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="products.html" aria-current="page">Products</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-    </nav>
-  </header>
+  <!-- Shared header loads from partials/header.html -->
+  <div id="header"></div>
 
   <main>
-    <!-- Page introduction -->
+    <!-- Products page introduction -->
     <section class="page-hero section">
       <div class="container narrow">
         <p class="eyebrow">Product range</p>
@@ -36,60 +23,60 @@
       </div>
     </section>
 
-    <!-- Product catalog cards -->
-    <section class="section">
-      <div class="container product-grid catalog-grid">
-        <article class="product-card">
-          <div class="product-media dried-fruits">Dried Fruits</div>
-          <div class="product-content">
-            <span class="tag">Fruit Mix</span>
-            <h2>Premium Dried Fruits</h2>
-            <p>A naturally sweet mix for snacks, breakfast bowls, travel packs, and gifting.</p>
-            <button class="button button-card" type="button">Inquire now</button>
-          </div>
-        </article>
-        <article class="product-card">
-          <div class="product-media dates-powder">Dates Powder</div>
-          <div class="product-content">
-            <span class="tag">Natural Sweetener</span>
-            <h2>Fine Dates Powder</h2>
-            <p>A date-based sweetener for milk, smoothies, porridge, desserts, and baking.</p>
-            <button class="button button-card" type="button">Inquire now</button>
-          </div>
-        </article>
-        <article class="product-card">
-          <div class="product-media dates-coffee">Dates Coffee</div>
-          <div class="product-content">
-            <span class="tag">Beverage</span>
-            <h2>Dates Coffee Blend</h2>
-            <p>A warm drink blend with a date-forward profile for daily coffee moments.</p>
-            <button class="button button-card" type="button">Inquire now</button>
-          </div>
-        </article>
-        <article class="product-card">
-          <div class="product-media gift-box">Gift Selection</div>
-          <div class="product-content">
-            <span class="tag">Assorted Pack</span>
-            <h2>Pranam Gift Selection</h2>
-            <p>An assorted presentation concept for family gifting and festive occasions.</p>
-            <button class="button button-card" type="button">Inquire now</button>
-          </div>
-        </article>
+    <!-- Product filters for future catalog expansion -->
+    <section class="section compact-section" aria-labelledby="products-heading">
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow">Catalog</p>
+          <h2 id="products-heading">Browse Pranam products.</h2>
+        </div>
+        <div class="filter-bar" role="group" aria-label="Filter products by category">
+          <button class="filter-button is-active" type="button" data-filter="all">All</button>
+          <button class="filter-button" type="button" data-filter="dried-fruits">Dried Fruits</button>
+          <button class="filter-button" type="button" data-filter="dates-powder">Dates Powder</button>
+          <button class="filter-button" type="button" data-filter="dates-coffee">Dates Coffee</button>
+        </div>
+
+        <!-- Product catalog cards -->
+        <div class="product-grid catalog-grid" id="product-list">
+          <article class="product-card" data-category="dried-fruits">
+            <div class="product-media dried-fruits">Dried Fruits</div>
+            <div class="product-content">
+              <span class="tag">Fruit Mix</span>
+              <h3>Premium Dried Fruits</h3>
+              <p>A naturally sweet mix for snacks, breakfast bowls, travel packs, and gifting.</p>
+              <a class="button button-card" href="contact.html">Inquire now</a>
+            </div>
+          </article>
+          <article class="product-card" data-category="dates-powder">
+            <div class="product-media dates-powder">Dates Powder</div>
+            <div class="product-content">
+              <span class="tag">Natural Sweetener</span>
+              <h3>Fine Dates Powder</h3>
+              <p>A date-based sweetener for milk, smoothies, porridge, desserts, and baking.</p>
+              <a class="button button-card" href="contact.html">Inquire now</a>
+            </div>
+          </article>
+          <article class="product-card" data-category="dates-coffee">
+            <div class="product-media dates-coffee">Dates Coffee</div>
+            <div class="product-content">
+              <span class="tag">Beverage</span>
+              <h3>Dates Coffee Blend</h3>
+              <p>A warm drink blend with a date-forward profile for daily coffee moments.</p>
+              <a class="button button-card" href="contact.html">Inquire now</a>
+            </div>
+          </article>
+        </div>
       </div>
     </section>
   </main>
 
-  <!-- Shared footer -->
-  <footer class="site-footer">
-    <div class="container footer-grid">
-      <div>
-        <a class="footer-logo" href="index.html">Pranam</a>
-        <p>Natural dried fruits and date-based pantry products.</p>
-      </div>
-      <p class="copyright">&copy; 2026 Pranam. All rights reserved.</p>
-    </div>
-  </footer>
+  <!-- Shared footer loads from partials/footer.html -->
+  <div id="footer"></div>
 
-  <script src="js/script.js"></script>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="js/navigation.js"></script>
+  <script src="js/products.js"></script>
+  <script src="js/main.js"></script>
 </body>
 </html>
