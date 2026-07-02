@@ -1,9 +1,15 @@
 'use client';
 
 import Image from 'next/image';
+import { Heart, PackageOpen, Truck } from 'lucide-react';
 import { useState } from 'react';
+import Header from './Header';
+import { Badge } from './ui/badge';
+import { Button } from './ui/button';
+import { Card, CardContent, CardFooter } from './ui/card';
+import { products } from '@/data/products';
 
-const products = [
+/*
   {
     name: 'Dates Powder',
     category: 'Natural Sweetener',
@@ -58,7 +64,7 @@ const products = [
     imageClass: 'makhana',
     emoji: '⚪'
   }
-];
+*/
 
 const benefits = [
   {
@@ -94,34 +100,40 @@ function ProductImage({ product }) {
   const [imageFailed, setImageFailed] = useState(false);
 
   return (
-    <div className={`product-image ${product.imageClass}`}>
+    <div className={`catalog-product-image catalog-tone-${product.tone}`}>
       {!imageFailed && (
         <Image
           src={product.image}
           alt={`Pranam Agro Foods ${product.name}`}
           width={360}
           height={300}
-          className="product-img"
+          sizes="(max-width: 40rem) calc(100vw - 3.5rem), (max-width: 64rem) calc(50vw - 3rem), 17rem"
+          className="h-full w-full object-contain drop-shadow-[0_1.25rem_1.5rem_rgba(32,54,35,0.14)]"
           onError={() => setImageFailed(true)}
           priority={false}
         />
       )}
-      {imageFailed && <span className="product-fallback">{product.emoji}</span>}
+      {imageFailed && (
+        <div className="catalog-image-fallback" role="img" aria-label={`${product.name} image coming soon`}>
+          <PackageOpen aria-hidden="true" />
+          <span>{product.name}</span>
+        </div>
+      )}
     </div>
   );
 }
 
 export default function HomePage() {
-  const [menuOpen, setMenuOpen] = useState(false);
   const [cartCount, setCartCount] = useState(0);
   const [wishlist, setWishlist] = useState({});
+  const [selectedVariants, setSelectedVariants] = useState({});
   const [addedProduct, setAddedProduct] = useState('');
   const [heroImageFailed, setHeroImageFailed] = useState(false);
-  const [logoFailed, setLogoFailed] = useState(false);
 
-  const addToCart = (name) => {
+  const addToCart = (product) => {
+    const variant = selectedVariants[product.id] ?? product.variants[0];
     setCartCount((count) => count + 1);
-    setAddedProduct(name);
+    setAddedProduct(`${product.id}-${variant.weight}`);
     setTimeout(() => setAddedProduct(''), 1100);
   };
 
@@ -129,67 +141,9 @@ export default function HomePage() {
     setWishlist((items) => ({ ...items, [name]: !items[name] }));
   };
 
-  const closeMenu = () => setMenuOpen(false);
-
   return (
     <>
-      <div className="top-strip">
-        <p>100% Natural • No Added Sugar • Wholesale & Retail Available</p>
-      </div>
-
-      <header className={`site-header ${menuOpen ? 'menu-open' : ''}`}>
-        <nav className="navbar container">
-          <a href="#" className="brand" aria-label="Pranam Agro Foods home">
-            <span className="brand-logo-wrap">
-              {!logoFailed ? (
-                <Image
-                  src="/images/logo.png"
-                  alt="Pranam Agro Foods Logo"
-                  width={128}
-                  height={52}
-                  className="brand-logo"
-                  priority
-                  onError={() => setLogoFailed(true)}
-                />
-              ) : (
-                <span className="brand-mark">P</span>
-              )}
-            </span>
-            <span className="brand-text">
-              <strong>Pranam</strong>
-              <small>Agro Foods</small>
-            </span>
-          </a>
-
-          <button
-            className="nav-toggle"
-            type="button"
-            aria-label="Open menu"
-            aria-expanded={menuOpen}
-            onClick={() => setMenuOpen((open) => !open)}
-          >
-            <span></span>
-            <span></span>
-            <span></span>
-          </button>
-
-          <div className="nav-links">
-            <a href="#products" onClick={closeMenu}>Products</a>
-            <a href="#why" onClick={closeMenu}>Why Pranam</a>
-            <a href="#process" onClick={closeMenu}>Process</a>
-            <a href="#contact" onClick={closeMenu}>Contact</a>
-          </div>
-
-          <div className="nav-actions">
-            <button className="icon-btn" aria-label="Search">⌕</button>
-            <button className="icon-btn cart-btn" aria-label="Cart">
-              🛒<span>{cartCount}</span>
-            </button>
-            <a className="btn btn-primary" href="#products" onClick={closeMenu}>Shop Now</a>
-          </div>
-        </nav>
-      </header>
-
+      <Header cartCount={cartCount} />
       <main>
         <section className="hero section-padding">
           <div className="container hero-grid">
@@ -272,30 +226,88 @@ export default function HomePage() {
               <p>Clean FMCG-style product cards suitable for ecommerce listing and homepage conversion.</p>
             </div>
 
-            <div className="product-grid">
-              {products.map((product) => (
-                <article className="product-card" key={product.name}>
-                  <button
-                    className={`wish ${wishlist[product.name] ? 'active' : ''}`}
-                    aria-label={`Add ${product.name} to wishlist`}
-                    onClick={() => toggleWishlist(product.name)}
-                  >
-                    {wishlist[product.name] ? '♥' : '♡'}
-                  </button>
-                  <ProductImage product={product} />
-                  <div className="product-info">
-                    <small>{product.category}</small>
-                    <h3>{product.name}</h3>
-                    <p>{product.description}</p>
-                    <div className="price-row">
-                      <strong>Rs. {product.price}</strong>
-                      <button className="add-cart" onClick={() => addToCart(product.name)}>
-                        {addedProduct === product.name ? 'Added' : 'Add'}
-                      </button>
-                    </div>
-                  </div>
-                </article>
-              ))}
+            <div className="catalog-grid grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-3">
+              {products.map((product) => {
+                const selectedVariant = selectedVariants[product.id] ?? product.variants[0];
+                const addedKey = `${product.id}-${selectedVariant.weight}`;
+
+                return (
+                  <Card className="catalog-card" key={product.id}>
+                    <Button
+                      className="catalog-wishlist"
+                      variant="outline"
+                      size="icon-lg"
+                      type="button"
+                      aria-label={`${wishlist[product.id] ? 'Remove' : 'Add'} ${product.name} ${wishlist[product.id] ? 'from' : 'to'} wishlist`}
+                      aria-pressed={Boolean(wishlist[product.id])}
+                      onClick={() => toggleWishlist(product.id)}
+                    >
+                      <Heart className={wishlist[product.id] ? 'fill-current' : ''} aria-hidden="true" />
+                    </Button>
+
+                    <ProductImage product={product} />
+
+                    <CardContent className="flex flex-1 flex-col px-5">
+                      <div className="mb-3 flex flex-wrap items-center gap-2">
+                        <Badge className="catalog-category-badge" variant="secondary">
+                          {product.category}
+                        </Badge>
+                        {product.note && (
+                          <Badge className="catalog-delivery-badge" variant="outline">
+                            <Truck aria-hidden="true" />
+                            {product.note}
+                          </Badge>
+                        )}
+                      </div>
+
+                      <h3 className="font-heading text-[clamp(1.25rem,2vw,1.5rem)] font-semibold leading-tight text-[#173f2a]">
+                        {product.name}
+                      </h3>
+                      <p className="mt-2 min-h-[4.5rem] text-base leading-6 text-[#626b64]">
+                        {product.description}
+                      </p>
+
+                      <div className="mt-5">
+                        <span className="text-xs font-bold uppercase tracking-[0.14em] text-[#81765e]">
+                          Available quantities
+                        </span>
+                        <div className="mt-2 flex flex-wrap gap-2" role="group" aria-label={`Select ${product.name} quantity`}>
+                          {product.variants.map((variant) => {
+                            const isSelected = selectedVariant.weight === variant.weight;
+
+                            return (
+                              <Button
+                                className="catalog-variant-button"
+                                variant={isSelected ? 'default' : 'outline'}
+                                size="sm"
+                                type="button"
+                                aria-pressed={isSelected}
+                                key={variant.weight}
+                                onClick={() => setSelectedVariants((current) => ({
+                                  ...current,
+                                  [product.id]: variant,
+                                }))}
+                              >
+                                {variant.weight}
+                              </Button>
+                            );
+                          })}
+                        </div>
+                      </div>
+                    </CardContent>
+
+                    <CardFooter className="catalog-card-footer">
+                      <div>
+                        <span>{selectedVariant === product.variants[0] ? 'Starts at' : selectedVariant.weight}</span>
+                        <strong>Rs. {selectedVariant.price.toLocaleString('en-IN')}</strong>
+                      </div>
+                      <Button className="catalog-add-button" type="button" onClick={() => addToCart(product)}>
+                        {addedProduct === addedKey ? 'Added' : 'Add'}
+                      </Button>
+                    </CardFooter>
+                  </Card>
+                );
+              })}
             </div>
           </div>
         </section>

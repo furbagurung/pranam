@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "skills": {
+    "fix": {
+      "source": "react/react",
+      "sourceType": "github",
+      "skillPath": ".claude/skills/fix/SKILL.md",
+      "computedHash": "fbcb5ad8268f75d363f1cc1a1f1b52f35996695d384550b1c2562cdf9c70c881"
+    }
+  }
+}
