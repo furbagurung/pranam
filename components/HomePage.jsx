@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { Heart, PackageOpen, Truck } from 'lucide-react';
 import { useState } from 'react';
 import Header from './Header';
+import HeroSlider from './HeroSlider';
 import { Badge } from './ui/badge';
 import { Button } from './ui/button';
 import { Card, CardContent, CardFooter } from './ui/card';
@@ -128,7 +129,6 @@ export default function HomePage() {
   const [wishlist, setWishlist] = useState({});
   const [selectedVariants, setSelectedVariants] = useState({});
   const [addedProduct, setAddedProduct] = useState('');
-  const [heroImageFailed, setHeroImageFailed] = useState(false);
 
   const addToCart = (product) => {
     const variant = selectedVariants[product.id] ?? product.variants[0];
@@ -145,66 +145,7 @@ export default function HomePage() {
     <>
       <Header cartCount={cartCount} />
       <main>
-        <section className="hero section-padding">
-          <div className="container hero-grid">
-            <div className="hero-content">
-              <span className="eyebrow">Premium Natural Food Powders</span>
-              <h1>Healthy everyday nutrition from fruits, vegetables & dry fruits.</h1>
-              <p className="hero-text">
-                Discover clean, convenient and family-friendly powders made for smoothies,
-                porridges, baby food, baking and daily nutrition.
-              </p>
-
-              <div className="hero-actions">
-                <a className="btn btn-primary btn-large" href="#products">Explore Products</a>
-                <a className="btn btn-outline btn-large" href="#why">Why Choose Us</a>
-              </div>
-
-              <div className="trust-row" aria-label="Product highlights">
-                <div><strong>0%</strong><span>Added Sugar</span></div>
-                <div><strong>100%</strong><span>Natural</span></div>
-                <div><strong>7+</strong><span>Products</span></div>
-              </div>
-            </div>
-
-            <div className="hero-visual" aria-label="Featured Pranam products">
-              <div className="blob blob-1"></div>
-              <div className="blob blob-2"></div>
-
-              <div className="hero-product-card">
-                {!heroImageFailed ? (
-                  <Image
-                    src="/images/hero-product.png"
-                    alt="Pranam Agro Foods featured product jar"
-                    width={460}
-                    height={520}
-                    className="hero-product-img"
-                    priority
-                    onError={() => setHeroImageFailed(true)}
-                  />
-                ) : (
-                  <div className="jar jar-main">
-                    <div className="lid"></div>
-                    <div className="jar-body">
-                      <span className="label-top">PRANAM</span>
-                      <strong>Pumpkin<br />Powder</strong>
-                      <small>Fine Natural Powder</small>
-                    </div>
-                  </div>
-                )}
-              </div>
-
-              <div className="mini-card mini-card-1">
-                <span>🍎</span>
-                <p>Apple Powder</p>
-              </div>
-              <div className="mini-card mini-card-2">
-                <span>☕</span>
-                <p>Date Seed Coffee</p>
-              </div>
-            </div>
-          </div>
-        </section>
+        <HeroSlider />
 
         <section className="category-bar">
           <div className="container category-scroll">
