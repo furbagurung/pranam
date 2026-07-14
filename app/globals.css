@@ -1181,55 +1181,213 @@ h2 {
   }
 }
 
-.why {
-  background: var(--cream);
+.why-pranam {
+  position: relative;
+  overflow: hidden;
+  padding-block: clamp(4rem, 6vw, 5.75rem);
+  background:
+    radial-gradient(circle at 78% 25%, rgba(73, 139, 88, .1), transparent 27rem),
+    radial-gradient(circle at 6% 82%, rgba(211, 155, 37, .09), transparent 22rem),
+    linear-gradient(180deg, #fbf7ee 0%, #f7f0e3 100%);
 }
 
-.why-grid {
+.why-pranam::before {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: radial-gradient(rgba(27, 87, 51, .08) .0625rem, transparent .0625rem);
+  background-size: 1.25rem 1.25rem;
+  content: "";
+  opacity: .16;
+}
+
+.why-pranam-grid {
+  position: relative;
+  z-index: 1;
   display: grid;
-  grid-template-columns: .85fr 1.15fr;
-  gap: 52px;
+  grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr);
   align-items: center;
+  gap: clamp(2.5rem, 5vw, 4.5rem);
 }
 
-.why-grid p {
-  color: var(--muted);
+.why-pranam-copy {
+  max-width: 35rem;
+}
+
+.why-pranam-badge {
+  min-height: 1.875rem;
+  padding-inline: .75rem;
+  border-color: rgba(36, 122, 59, .2);
+  background: rgba(255, 255, 255, .64);
+  color: #1d6336;
+  font-size: .75rem;
+  font-weight: 800;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+.why-pranam-badge svg {
+  width: .875rem;
+  height: .875rem;
+}
+
+.why-pranam-copy h2 {
+  max-width: 34rem;
+  margin: 1.25rem 0 1rem;
+  color: #154b2a;
+  font-size: clamp(2.25rem, 4vw, 3.75rem);
+  line-height: 1.02;
+}
+
+.why-pranam-copy > p {
+  max-width: 33rem;
+  margin-bottom: 1.75rem;
+  color: #556259;
+  font-size: 1.0625rem;
   line-height: 1.7;
-  font-size: 17px;
 }
 
-.benefit-grid {
+.why-pranam-cta {
+  min-height: 3rem;
+  border-color: #1b5733;
+  border-radius: 999px;
+  padding-inline: 1.25rem;
+  background: #1b5733;
+  color: white;
+  font-size: .9375rem;
+  font-weight: 800;
+  box-shadow: 0 .75rem 1.75rem rgba(27, 87, 51, .15);
+}
+
+.why-pranam-cta:hover {
+  border-color: #123e24;
+  background: #123e24;
+  color: white;
+}
+
+.why-pranam-benefits {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 18px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  align-items: stretch;
 }
 
-.benefit-card {
-  padding: 26px;
-  border-radius: var(--radius-lg);
-  background: white;
-  border: 1px solid var(--line);
+.why-pranam-card {
+  --card-spacing: 0;
+  position: relative;
+  overflow: hidden;
+  gap: 0;
+  padding: 0;
+  border: 1px solid #e3dac8;
+  border-radius: 1.5rem;
+  background: rgba(255, 255, 255, .92);
+  box-shadow: 0 .75rem 2rem rgba(42, 57, 45, .055);
+  transition: border-color 220ms ease, box-shadow 220ms ease, transform 220ms ease;
 }
 
-.benefit-card span {
-  width: 54px;
-  height: 54px;
-  display: grid;
-  place-items: center;
-  border-radius: 18px;
-  background: var(--green-soft);
-  font-size: 25px;
-  margin-bottom: 18px;
+.why-pranam-card::before {
+  position: absolute;
+  inset: 0 0 auto;
+  height: .1875rem;
+  background: linear-gradient(90deg, #1d6336, #d3a33d 72%, transparent);
+  content: "";
+  opacity: .72;
 }
 
-.benefit-card h3 {
-  color: var(--green-dark);
-  margin-bottom: 8px;
+.why-pranam-card:hover {
+  border-color: rgba(36, 122, 59, .24);
+  box-shadow: 0 1.25rem 2.75rem rgba(42, 57, 45, .09);
+  transform: translateY(-.1875rem);
 }
 
-.benefit-card p {
-  margin-bottom: 0;
-  font-size: 15px;
+.why-pranam-card-content {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  align-items: start;
+  gap: 0;
+  padding: 1.5rem;
+}
+
+.why-pranam-icon {
+  width: 2.75rem;
+  height: 2.75rem;
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(36, 122, 59, .12);
+  border-radius: .875rem;
+  background: linear-gradient(145deg, #edf7f0, #dceee2);
+  color: #17602f;
+  box-shadow: inset 0 .0625rem 0 rgba(255, 255, 255, .8), 0 .5rem 1.25rem rgba(27, 87, 51, .1);
+}
+
+.why-pranam-icon svg {
+  width: 1.25rem;
+  height: 1.25rem;
+  color: #17602f;
+  stroke-width: 1.75;
+}
+
+.why-pranam-card h3 {
+  margin: 0 0 .5rem;
+  color: #173f2a;
+  font-size: 1.125rem;
+  font-weight: 750;
+  line-height: 1.25;
+}
+
+.why-pranam-card p {
+  margin: 0;
+  color: #626b64;
+  font-size: .9375rem;
+  line-height: 1.55;
+}
+
+.why-pranam :is(a, button):focus-visible {
+  outline: .1875rem solid rgba(182, 141, 45, .4);
+  outline-offset: .1875rem;
+}
+
+@media (max-width: 63.999rem) {
+  .why-pranam-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .why-pranam-copy {
+    max-width: 44rem;
+  }
+}
+
+@media (max-width: 39.999rem) {
+  .why-pranam {
+    padding-block: 3.75rem;
+  }
+
+  .why-pranam-benefits {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .why-pranam-cta {
+    width: 100%;
+  }
+}
+
+@media (max-width: 23rem) {
+  .why-pranam-card-content {
+    padding: 1.25rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .why-pranam-card {
+    transition: none;
+  }
+
+  .why-pranam-card:hover {
+    transform: none;
+  }
 }
 
 .steps {

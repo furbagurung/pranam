@@ -1,7 +1,19 @@
 'use client';
 
 import Image from 'next/image';
-import { Heart, PackageOpen, ShoppingCart, Star, Truck } from 'lucide-react';
+import {
+  Heart,
+  HeartHandshake,
+  Leaf,
+  PackageCheck,
+  PackageOpen,
+  ShieldCheck,
+  ShoppingCart,
+  Sparkles,
+  Star,
+  Store,
+  Truck,
+} from 'lucide-react';
 import { motion, useReducedMotion } from 'motion/react';
 import { useState } from 'react';
 import Header from './Header';
@@ -70,25 +82,35 @@ import { products } from '@/data/products';
 
 const benefits = [
   {
-    icon: '🌿',
+    icon: Leaf,
     title: 'Natural Ingredients',
-    text: 'Made from selected fruits, vegetables and dry fruits.'
+    text: 'Made from selected fruits, vegetables, and dry fruits.',
   },
   {
-    icon: '🧂',
+    icon: ShieldCheck,
     title: 'No Preservatives',
-    text: 'Simple daily nutrition without unnecessary additives.'
+    text: 'Simple daily nutrition without unnecessary additives.',
   },
   {
-    icon: '👶',
+    icon: HeartHandshake,
     title: 'Family Friendly',
-    text: 'Useful for porridge, smoothies, soups and healthy recipes.'
+    text: 'Useful for porridge, smoothies, soups, breakfast bowls, and homemade recipes.',
   },
   {
-    icon: '📦',
+    icon: Store,
     title: 'Retail Ready',
-    text: 'Suitable for wholesale, retail and ecommerce product selling.'
-  }
+    text: 'Suitable for wholesale, retail, and ecommerce product selling.',
+  },
+  {
+    icon: PackageCheck,
+    title: 'Multiple Pack Sizes',
+    text: 'Available in practical sizes for home and retail needs.',
+  },
+  {
+    icon: Sparkles,
+    title: 'Carefully Packed',
+    text: 'Packed to support freshness, shelf presence, and everyday convenience.',
+  },
 ];
 
 const steps = [
@@ -233,6 +255,76 @@ function ProductCard({ product, isWishlisted, onAddToCart, onToggleWishlist, add
   );
 }
 
+function WhyPranamSection() {
+  const shouldReduceMotion = useReducedMotion();
+  const reveal = shouldReduceMotion
+    ? { initial: false }
+    : {
+        initial: { opacity: 0, y: 20 },
+        whileInView: { opacity: 1, y: 0 },
+        viewport: { once: true, amount: 0.18 },
+      };
+
+  return (
+    <motion.section className="why-pranam" id="why" {...reveal} transition={{ duration: 0.42, ease: [0.22, 1, 0.36, 1] }}>
+      <div className="mx-auto w-full max-w-[90rem] px-4 sm:px-6 lg:px-8">
+        <div className="why-pranam-grid grid grid-cols-1 items-center gap-10 lg:grid-cols-[0.85fr_1.15fr]">
+          <div className="why-pranam-copy min-w-0">
+            <Badge className="why-pranam-badge" variant="outline">
+              <Leaf aria-hidden="true" />
+              Why Pranam Agro Foods
+            </Badge>
+            <h2>Clean ingredients made easy for modern families.</h2>
+            <p>
+              Thoughtfully made fruit, vegetable, and dry fruit products for daily nutrition,
+              family use, retail shelves, and ecommerce stores.
+            </p>
+            <Button className="why-pranam-cta" variant="outline" size="lg" asChild>
+              <a href="#contact">
+                <Store aria-hidden="true" />
+                Become a Retail Partner
+              </a>
+            </Button>
+          </div>
+
+          <div className="why-pranam-benefits grid min-w-0 grid-cols-1 gap-4 sm:grid-cols-2">
+            {benefits.map((benefit, index) => {
+              const Icon = benefit.icon;
+
+              return (
+                <motion.div
+                  className="h-full"
+                  initial={shouldReduceMotion ? false : { opacity: 0, y: 16 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.2 }}
+                  transition={{
+                    duration: 0.34,
+                    delay: shouldReduceMotion ? 0 : index * 0.055,
+                    ease: [0.22, 1, 0.36, 1],
+                  }}
+                  key={benefit.title}
+                >
+                  <Card className="why-pranam-card h-full rounded-3xl border border-[#e3dac8] bg-white/95 shadow-[0_0.75rem_2rem_rgba(42,57,45,0.07)]">
+                    <CardContent className="why-pranam-card-content flex h-full flex-col items-start p-6">
+                      <span className="why-pranam-icon flex size-11 items-center justify-center rounded-2xl bg-[#e8f4ec] text-[#1d6336]">
+                        <Icon className="size-5 text-[#1d6336]" aria-hidden="true" />
+                      </span>
+                      <div className="mt-5 min-w-0">
+                        <h3>{benefit.title}</h3>
+                        <p>{benefit.text}</p>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              );
+            })}
+          </div>
+        </div>
+      </div>
+    </motion.section>
+  );
+}
+
 export default function HomePage() {
   const [cartCount, setCartCount] = useState(0);
   const [wishlist, setWishlist] = useState({});
@@ -316,27 +408,7 @@ export default function HomePage() {
           </div>
         </section>
 
-        <section className="why section-padding" id="why">
-          <div className="container why-grid">
-            <div>
-              <span className="eyebrow">Why Pranam Agro Foods</span>
-              <h2>Clean ingredients made easy for modern families.</h2>
-              <p>
-                Build trust with clear benefits, simple copy and premium packaging-focused visual language.
-              </p>
-              <a className="btn btn-outline" href="#contact">Become a Retail Partner</a>
-            </div>
-            <div className="benefit-grid">
-              {benefits.map((benefit) => (
-                <div className="benefit-card" key={benefit.title}>
-                  <span>{benefit.icon}</span>
-                  <h3>{benefit.title}</h3>
-                  <p>{benefit.text}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
+        <WhyPranamSection />
 
         <section className="process section-padding" id="process">
           <div className="container">
