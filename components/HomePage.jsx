@@ -6,8 +6,12 @@ import {
   Heart,
   HeartHandshake,
   Leaf,
+  Mail,
+  MapPin,
+  MessageCircle,
   PackageCheck,
   PackageOpen,
+  Phone,
   ShieldCheck,
   ShoppingCart,
   Sparkles,
@@ -392,6 +396,109 @@ function ProcessSection() {
   );
 }
 
+function FinalCTA() {
+  const shouldReduceMotion = useReducedMotion();
+
+  return (
+    <motion.section
+      className="wholesale-cta"
+      id="contact"
+      initial={shouldReduceMotion ? false : { opacity: 0, y: 18 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.2 }}
+      transition={{ duration: 0.42, ease: [0.22, 1, 0.36, 1] }}
+    >
+      <div className="mx-auto w-full max-w-[90rem] px-4 sm:px-6 lg:px-8">
+        <div className="wholesale-cta-panel">
+          <div className="wholesale-cta-copy">
+            <Badge className="wholesale-cta-badge" variant="outline">
+              <Store aria-hidden="true" />
+              Wholesale &amp; Retail
+            </Badge>
+            <h2>Want Pranam products for your store?</h2>
+            <p>Contact us for product inquiries, bulk orders, retail supply, and ecommerce partnerships.</p>
+          </div>
+
+          <div className="wholesale-cta-actions">
+            <Button className="wholesale-cta-primary" size="lg" asChild>
+              <a href="tel:+9779843633002">
+                <Phone aria-hidden="true" />
+                Call: +977-9843633002
+              </a>
+            </Button>
+            <Button className="wholesale-cta-secondary" variant="outline" size="lg" asChild>
+              <a href="mailto:hello@pranamagrofoods.com">
+                <Mail aria-hidden="true" />
+                Email Us
+              </a>
+            </Button>
+            <Button className="wholesale-cta-secondary" variant="outline" size="lg" asChild>
+              <a href="https://wa.me/9779843633002" target="_blank" rel="noreferrer">
+                <MessageCircle aria-hidden="true" />
+                WhatsApp
+              </a>
+            </Button>
+          </div>
+        </div>
+      </div>
+    </motion.section>
+  );
+}
+
+function SiteFooter() {
+  const shouldReduceMotion = useReducedMotion();
+
+  return (
+    <motion.footer
+      className="premium-footer"
+      initial={shouldReduceMotion ? false : { opacity: 0, y: 14 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.08 }}
+      transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+    >
+      <div className="mx-auto w-full max-w-[90rem] px-4 sm:px-6 lg:px-8">
+        <div className="premium-footer-grid grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-[1.35fr_0.75fr_0.75fr_1.15fr] lg:gap-12">
+          <div className="premium-footer-brand">
+            <a className="premium-footer-logo" href="#" aria-label="Pranam Agro Foods home">
+              <Image src="/images/logo.png" alt="Pranam Agro Foods" width={180} height={72} sizes="180px" />
+            </a>
+            <h2>Pranam Agro Foods</h2>
+            <p>Natural fruit, vegetable, and dry fruit products for healthy everyday living.</p>
+          </div>
+
+          <nav className="premium-footer-column" aria-label="Product links">
+            <h3>Products</h3>
+            <a href="#products">Fruit Powders</a>
+            <a href="#products">Vegetable Powders</a>
+            <a href="#products">Dry Fruit Chips</a>
+            <a href="#products">Date Seed Coffee</a>
+          </nav>
+
+          <nav className="premium-footer-column" aria-label="Company links">
+            <h3>Company</h3>
+            <a href="#">About</a>
+            <a href="#why">Why Pranam</a>
+            <a href="#process">Our Process</a>
+            <a href="#contact">Contact</a>
+          </nav>
+
+          <div className="premium-footer-column premium-footer-contact">
+            <h3>Contact</h3>
+            <address>
+              <span><MapPin aria-hidden="true" />Kamalbinayak 10, Bhaktapur, Nepal</span>
+              <a href="tel:+9779843633002"><Phone aria-hidden="true" />+977-9843633002</a>
+              <a href="mailto:hello@pranamagrofoods.com"><Mail aria-hidden="true" />hello@pranamagrofoods.com</a>
+              <span><Store aria-hidden="true" />Wholesale &amp; retail available</span>
+            </address>
+          </div>
+        </div>
+
+        <div className="premium-footer-bottom">© 2026 Pranam Agro Foods. All rights reserved.</div>
+      </div>
+    </motion.footer>
+  );
+}
+
 export default function HomePage() {
   const [cartCount, setCartCount] = useState(0);
   const [wishlist, setWishlist] = useState({});
@@ -479,52 +586,10 @@ export default function HomePage() {
 
         <ProcessSection />
 
-        <section className="cta" id="contact">
-          <div className="container cta-box">
-            <div>
-              <span className="eyebrow light">Wholesale & Retail</span>
-              <h2>Want Pranam products for your store?</h2>
-              <p>Contact us for product inquiries, bulk orders and ecommerce partnerships.</p>
-            </div>
-            <div className="cta-actions">
-              <a className="btn btn-light" href="tel:+9779843633002">Call: +977-9843633002</a>
-              <a className="btn btn-ghost-light" href="mailto:hello@pranamagrofoods.com">Email Us</a>
-            </div>
-          </div>
-        </section>
+        <FinalCTA />
       </main>
 
-      <footer className="site-footer">
-        <div className="container footer-grid">
-          <div>
-            <a href="#" className="brand footer-brand">
-              <span className="brand-mark">P</span>
-              <span>
-                <strong>Pranam</strong>
-                <small>Agro Foods</small>
-              </span>
-            </a>
-            <p>Natural fruit, vegetable and dry fruit powders for healthy everyday living.</p>
-          </div>
-          <div>
-            <h4>Products</h4>
-            <a href="#products">Fruit Powders</a>
-            <a href="#products">Vegetable Powders</a>
-            <a href="#products">Date Seed Coffee</a>
-          </div>
-          <div>
-            <h4>Company</h4>
-            <a href="#why">About</a>
-            <a href="#process">Process</a>
-            <a href="#contact">Contact</a>
-          </div>
-          <div>
-            <h4>Location</h4>
-            <p>Kamalbinayak 10, Bhaktapur, Nepal</p>
-          </div>
-        </div>
-        <div className="footer-bottom container">© 2026 Pranam Agro Foods. All rights reserved.</div>
-      </footer>
+      <SiteFooter />
     </>
   );
 }
