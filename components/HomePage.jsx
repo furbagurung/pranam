@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import {
+  Droplets,
   Heart,
   HeartHandshake,
   Leaf,
@@ -10,8 +11,10 @@ import {
   ShieldCheck,
   ShoppingCart,
   Sparkles,
+  Sprout,
   Star,
   Store,
+  Sun,
   Truck,
 } from 'lucide-react';
 import { motion, useReducedMotion } from 'motion/react';
@@ -114,10 +117,10 @@ const benefits = [
 ];
 
 const steps = [
-  ['01', 'Select', 'Fresh ingredients are carefully selected.'],
-  ['02', 'Clean', 'Washed and prepared with hygiene in focus.'],
-  ['03', 'Dry', 'Dehydrated to preserve natural quality.'],
-  ['04', 'Pack', 'Finely powdered and packed for daily use.']
+  { number: '01', icon: Sprout, title: 'Select', text: 'Fresh ingredients are carefully selected.' },
+  { number: '02', icon: Droplets, title: 'Clean', text: 'Washed and prepared with hygiene in focus.' },
+  { number: '03', icon: Sun, title: 'Dry', text: 'Dehydrated to preserve natural quality.' },
+  { number: '04', icon: PackageCheck, title: 'Pack', text: 'Finely powdered and packed for daily use.' },
 ];
 
 const productFilters = [
@@ -325,6 +328,70 @@ function WhyPranamSection() {
   );
 }
 
+function ProcessSection() {
+  const shouldReduceMotion = useReducedMotion();
+
+  return (
+    <motion.section
+      className="process-section bg-[#fbf7ee] pt-20 pb-28 sm:pt-24 sm:pb-32 lg:pt-28 lg:pb-36"
+      id="process"
+      initial={shouldReduceMotion ? false : { opacity: 0, y: 18 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.15 }}
+      transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+    >
+      <div className="mx-auto w-full max-w-[90rem] px-4 sm:px-6 lg:px-8">
+        <div className="process-section-head mx-auto max-w-3xl text-center">
+          <Badge className="process-section-badge mx-auto" variant="outline">OUR PROCESS</Badge>
+          <h2 className="mt-4 mb-3 text-center text-[clamp(2.25rem,4vw,3.5rem)] leading-[1.04] text-[#154b2a]">
+            From fresh produce to fine powder
+          </h2>
+          <p className="mx-auto max-w-2xl text-center text-[1.0625rem] leading-7 text-[#59665d]">
+            A simple, careful process designed to preserve natural quality, freshness,
+            and everyday usability.
+          </p>
+        </div>
+
+        <div className="process-card-grid mt-10 grid grid-cols-1 items-stretch gap-5 sm:grid-cols-2 lg:mt-12 lg:grid-cols-4 lg:gap-6">
+          {steps.map((step, index) => {
+            const Icon = step.icon;
+
+            return (
+              <motion.div
+                className="relative z-[1] h-full"
+                initial={shouldReduceMotion ? false : { opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{
+                  duration: 0.32,
+                  delay: shouldReduceMotion ? 0 : index * 0.06,
+                  ease: [0.22, 1, 0.36, 1],
+                }}
+                key={step.number}
+              >
+                <Card className="process-card h-full min-h-72 rounded-3xl border border-[#e4dac7] bg-white/95 shadow-[0_1rem_2.5rem_rgba(42,57,45,0.09)]">
+                  <CardContent className="process-card-content flex h-full flex-col p-8">
+                    <div className="process-card-topline flex items-center justify-between gap-4">
+                      <span className="process-step-number text-sm font-extrabold tracking-[0.16em] text-[#a87918]">
+                        {step.number}
+                      </span>
+                      <span className="process-icon flex size-12 items-center justify-center rounded-full bg-[#e8f4ec] text-[#17602f]">
+                        <Icon className="size-6 text-[#17602f]" aria-hidden="true" />
+                      </span>
+                    </div>
+                    <h3 className="mt-auto mb-3 text-2xl font-bold text-[#173f2a]">{step.title}</h3>
+                    <p className="text-base leading-7 text-[#56635a]">{step.text}</p>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            );
+          })}
+        </div>
+      </div>
+    </motion.section>
+  );
+}
+
 export default function HomePage() {
   const [cartCount, setCartCount] = useState(0);
   const [wishlist, setWishlist] = useState({});
@@ -410,23 +477,7 @@ export default function HomePage() {
 
         <WhyPranamSection />
 
-        <section className="process section-padding" id="process">
-          <div className="container">
-            <div className="section-head compact">
-              <span className="eyebrow">Our Process</span>
-              <h2>From fresh produce to fine powder</h2>
-            </div>
-            <div className="steps">
-              {steps.map(([number, title, text]) => (
-                <div className="step" key={number}>
-                  <span>{number}</span>
-                  <h3>{title}</h3>
-                  <p>{text}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
+        <ProcessSection />
 
         <section className="cta" id="contact">
           <div className="container cta-box">
