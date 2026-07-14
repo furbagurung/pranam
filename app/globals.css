@@ -1134,7 +1134,7 @@ h2 {
 
 @media (min-width: 40rem) {
   .catalog-product-image {
-    height: 13.75rem;
+    height: 13rem;
   }
 }
 
@@ -1154,10 +1154,22 @@ h2 {
   .catalog-section-head {
     grid-template-columns: minmax(0, 1fr);
     gap: 1rem;
+    margin-bottom: 1.5rem;
   }
 
   .catalog-section-head p {
     margin-bottom: 0;
+  }
+
+  .catalog-filters {
+    gap: .5rem;
+    margin-bottom: 1.75rem;
+  }
+
+  .catalog-filter-button,
+  .catalog-variant-button,
+  .catalog-add-button {
+    min-height: 2.75rem;
   }
 }
 
@@ -1362,7 +1374,7 @@ h2 {
 
 @media (max-width: 39.999rem) {
   .why-pranam {
-    padding-block: 3.75rem;
+    padding-block: 3.5rem;
   }
 
   .why-pranam-benefits {
@@ -1371,6 +1383,14 @@ h2 {
 
   .why-pranam-cta {
     width: 100%;
+  }
+
+  .why-pranam-grid {
+    gap: 2rem;
+  }
+
+  .why-pranam-card-content {
+    padding: 1.375rem;
   }
 }
 
@@ -1535,15 +1555,23 @@ h2 {
 
 @media (max-width: 39.999rem) {
   .process-section {
-    padding: 4.5rem 0 5.5rem;
+    padding: 4rem 0 4.75rem;
   }
 
   .process-card {
-    min-height: 16.5rem;
+    min-height: 15rem;
   }
 
   .process-card-content {
-    padding: 1.75rem;
+    padding: 1.5rem;
+  }
+
+  .process-card-grid {
+    margin-top: 2rem;
+  }
+
+  .process-card-topline {
+    margin-bottom: 2rem;
   }
 }
 
@@ -1806,18 +1834,40 @@ h2 {
   .wholesale-cta-actions {
     max-width: none;
     justify-self: stretch;
+    margin-top: 0;
   }
 }
 
 @media (max-width: 479px) {
+  .wholesale-cta {
+    padding: 3rem 0 4rem;
+  }
+
   .wholesale-cta-panel {
     padding: 1.75rem 1.25rem;
     border-radius: 1.5rem;
+    gap: 1.75rem;
   }
 
   .wholesale-cta-button {
     width: 100%;
     padding-inline: 1rem;
+  }
+
+  .premium-footer {
+    padding: 3.75rem 0 1.5rem;
+  }
+
+  .premium-footer-grid {
+    row-gap: 2.5rem;
+  }
+
+  .premium-footer-logo {
+    max-width: 10rem;
+  }
+
+  .premium-footer-bottom {
+    margin-top: 2.75rem;
   }
 }
 
@@ -1894,7 +1944,22 @@ h2 {
   }
 
   .section-padding {
-    padding: 62px 0;
+    padding: 4rem 0;
+  }
+
+  .category-scroll {
+    width: 100%;
+    padding: .875rem 0;
+    scroll-padding-inline: .875rem;
+    scroll-snap-type: x proximity;
+  }
+
+  .category-scroll a {
+    min-height: 2.75rem;
+    display: inline-flex;
+    align-items: center;
+    padding: .625rem 1rem;
+    scroll-snap-align: start;
   }
 
   .navbar {
@@ -2570,7 +2635,6 @@ h2 {
   }
 
   .desktop-nav,
-  .desktop-search-trigger,
   .header-shop-button,
   .category-nav {
     display: none;
@@ -2599,17 +2663,24 @@ h2 {
 
   .main-header-inner {
     min-height: 70px;
+    grid-template-columns: 2.75rem minmax(0, 1fr) auto;
+    gap: .5rem;
+  }
+
+  .header-actions {
+    gap: .375rem;
   }
 
   .header-logo {
-    width: 118px;
-    height: 50px;
+    width: 7rem;
+    height: 3rem;
   }
 
   .header-search-form {
     min-height: 82px;
     grid-template-columns: auto 1fr auto;
     gap: 9px;
+    padding-inline: .25rem;
   }
 
   .header-search-form > button[type="submit"] {
@@ -2755,6 +2826,10 @@ h2 {
 }
 
 @media (max-width: 40rem) {
+  .hero-slider-section {
+    padding-block: .75rem .875rem;
+  }
+
   .hero-slider-frame {
     border-radius: 1rem;
     box-shadow: 0 .875rem 2.25rem rgba(29, 58, 37, .11);
@@ -2769,6 +2844,10 @@ h2 {
     width: 1.125rem;
     height: 1.125rem;
   }
+
+  .hero-slider-dots {
+    margin-top: .125rem;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -2779,5 +2858,214 @@ h2 {
 
   .hero-slider-arrow:hover {
     transform: translateY(-50%);
+  }
+}
+
+/* Mobile and tablet responsive polish */
+@media (max-width: 63.75rem) {
+  .desktop-search-trigger {
+    display: inline-grid;
+  }
+
+  .catalog-product-image {
+    height: 13rem;
+  }
+
+  .why-pranam-grid {
+    gap: 2.5rem;
+  }
+
+  .process-card-grid {
+    gap: 1rem;
+  }
+
+  .premium-footer-grid {
+    align-items: start;
+  }
+}
+
+@media (max-width: 40rem) {
+  html {
+    scroll-padding-top: 6.5rem;
+  }
+
+  .main-header-inner {
+    grid-template-columns: 2.75rem minmax(0, 1fr) auto;
+    gap: .5rem;
+  }
+
+  .header-actions {
+    gap: .375rem;
+  }
+
+  .header-logo {
+    width: 7rem;
+    height: 3rem;
+  }
+
+  .header-icon-button,
+  .hero-slider-arrow,
+  .catalog-wishlist {
+    width: 2.75rem;
+    height: 2.75rem;
+    flex-basis: 2.75rem;
+  }
+
+  .header-search-form {
+    padding-inline: .25rem;
+  }
+
+  .hero-slider-section {
+    padding-block: .75rem .875rem;
+  }
+
+  .hero-slider-dots {
+    margin-top: .125rem;
+  }
+
+  .category-scroll {
+    width: 100%;
+    padding: .875rem 0;
+    scroll-padding-inline: .875rem;
+    scroll-snap-type: x proximity;
+  }
+
+  .category-scroll a {
+    min-height: 2.75rem;
+    display: inline-flex;
+    align-items: center;
+    padding: .625rem 1rem;
+    scroll-snap-align: start;
+  }
+
+  .section-padding {
+    padding-block: 4rem;
+  }
+
+  .catalog-section-head {
+    margin-bottom: 1.5rem;
+  }
+
+  .catalog-section-head h2,
+  .why-pranam-copy h2,
+  .process-section-head h2,
+  .wholesale-cta-copy h2 {
+    font-size: clamp(2rem, 10vw, 2.5rem);
+  }
+
+  .catalog-filters {
+    gap: .5rem;
+    margin-bottom: 1.75rem;
+  }
+
+  .catalog-filter-button,
+  .catalog-variant-button,
+  .catalog-add-button {
+    min-height: 2.75rem;
+  }
+
+  .catalog-product-image {
+    height: 12.5rem;
+  }
+
+  .catalog-card-content {
+    padding-top: .875rem;
+  }
+
+  .catalog-variant-group {
+    padding-top: .875rem;
+  }
+
+  .why-pranam {
+    padding-block: 3.5rem;
+  }
+
+  .why-pranam-grid {
+    gap: 2rem;
+  }
+
+  .why-pranam-card-content {
+    padding: 1.375rem;
+  }
+
+  .why-pranam-cta {
+    min-height: 3rem;
+  }
+
+  .process-section {
+    padding: 4rem 0 4.75rem;
+  }
+
+  .process-card-grid {
+    margin-top: 2rem;
+  }
+
+  .process-card {
+    min-height: 15rem;
+  }
+
+  .process-card-content {
+    padding: 1.5rem;
+  }
+
+  .process-card-topline {
+    margin-bottom: 2rem;
+  }
+
+  .wholesale-cta {
+    padding: 3rem 0 4rem;
+  }
+
+  .wholesale-cta-panel {
+    gap: 1.75rem;
+  }
+
+  .wholesale-cta-actions {
+    margin-top: 0;
+  }
+
+  .premium-footer {
+    padding: 3.75rem 0 1.5rem;
+  }
+
+  .premium-footer-grid {
+    row-gap: 2.5rem;
+  }
+
+  .premium-footer-logo {
+    max-width: 10rem;
+  }
+
+  .premium-footer-brand h2 {
+    margin-top: 1.25rem;
+  }
+
+  .premium-footer-bottom {
+    margin-top: 2.75rem;
+  }
+}
+
+@media (max-width: 22rem) {
+  .announcement-inner p {
+    font-size: .6875rem;
+    letter-spacing: .02em;
+  }
+
+  .header-logo {
+    width: 6.25rem;
+  }
+
+  .header-icon-button {
+    width: 2.75rem;
+    height: 2.75rem;
+    flex-basis: 2.75rem;
+  }
+
+  .catalog-card-footer {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .catalog-add-button {
+    width: 100%;
   }
 }

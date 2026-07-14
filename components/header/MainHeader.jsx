@@ -33,7 +33,7 @@ export default function MainHeader({ cartCount, onMenuOpen, onSearch }) {
               alt="Pranam Agro Foods"
               width={154}
               height={62}
-              sizes="(max-width: 40rem) 7.375rem, 9.25rem"
+              sizes="(max-width: 40rem) 7rem, 9.25rem"
               className="header-logo"
               priority
               onError={() => setLogoFailed(true)}

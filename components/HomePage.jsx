@@ -401,38 +401,77 @@ function FinalCTA() {
 
   return (
     <motion.section
-      className="wholesale-cta"
+      className="wholesale-cta bg-[#fffdf8] py-12 sm:py-16 lg:py-20"
       id="contact"
       initial={shouldReduceMotion ? false : { opacity: 0, y: 18 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.2 }}
       transition={{ duration: 0.42, ease: [0.22, 1, 0.36, 1] }}
     >
-      <div className="mx-auto w-full max-w-[90rem] px-4 sm:px-6 lg:px-8">
-        <div className="wholesale-cta-panel">
-          <div className="wholesale-cta-copy">
-            <Badge className="wholesale-cta-badge" variant="outline">
+      <div className="mx-auto w-full max-w-[80rem] px-4 sm:px-6 lg:px-8">
+        <div
+          className="wholesale-cta-panel relative isolate grid overflow-hidden rounded-[2rem] border border-[#f7e2a7]/25 px-6 py-10 text-[#fffdf6] shadow-[0_28px_64px_rgba(15,67,37,0.20)] sm:px-10 sm:py-12 lg:grid-cols-[minmax(0,1.2fr)_minmax(18rem,0.8fr)] lg:items-center lg:gap-16 lg:px-16 lg:py-16"
+          style={{
+            background:
+              'radial-gradient(circle at 90% 8%, rgba(224,179,74,.28), transparent 34%), radial-gradient(circle at 4% 100%, rgba(93,154,85,.2), transparent 38%), linear-gradient(125deg, #0f5a2a 0%, #146b35 55%, #6c8f2a 100%)'
+          }}
+        >
+          <div className="wholesale-cta-copy min-w-0">
+            <Badge
+              className="wholesale-cta-badge"
+              variant="outline"
+              style={{
+                backgroundColor: 'rgba(255,255,255,0.14)',
+                borderColor: 'rgba(255,255,255,0.2)',
+                color: '#fffaf0'
+              }}
+            >
               <Store aria-hidden="true" />
               Wholesale &amp; Retail
             </Badge>
-            <h2>Want Pranam products for your store?</h2>
-            <p>Contact us for product inquiries, bulk orders, retail supply, and ecommerce partnerships.</p>
+            <h2 style={{ color: '#fffaf0', fontWeight: 750 }}>Want Pranam products for your store?</h2>
+            <p style={{ color: 'rgba(255,255,255,0.82)' }}>Contact us for product inquiries, bulk orders, retail supply, and ecommerce partnerships.</p>
           </div>
 
-          <div className="wholesale-cta-actions">
-            <Button className="wholesale-cta-primary" size="lg" asChild>
+          <div className="wholesale-cta-actions mt-8 grid w-full gap-3 lg:mt-0 lg:max-w-sm lg:justify-self-end">
+            <Button
+              className="wholesale-cta-button wholesale-cta-button-primary min-h-13 w-full justify-start rounded-full px-6 text-base"
+              size="lg"
+              style={{ backgroundColor: '#fffaf0', borderColor: '#fffaf0', color: '#0f5a2a' }}
+              asChild
+            >
               <a href="tel:+9779843633002">
                 <Phone aria-hidden="true" />
                 Call: +977-9843633002
               </a>
             </Button>
-            <Button className="wholesale-cta-secondary" variant="outline" size="lg" asChild>
+            <Button
+              className="wholesale-cta-button wholesale-cta-button-secondary min-h-13 w-full justify-start rounded-full px-6 text-base"
+              variant="outline"
+              size="lg"
+              style={{
+                backgroundColor: 'rgba(255,255,255,0.12)',
+                borderColor: 'rgba(255,255,255,0.25)',
+                color: '#fffaf0'
+              }}
+              asChild
+            >
               <a href="mailto:hello@pranamagrofoods.com">
                 <Mail aria-hidden="true" />
                 Email Us
               </a>
             </Button>
-            <Button className="wholesale-cta-secondary" variant="outline" size="lg" asChild>
+            <Button
+              className="wholesale-cta-button wholesale-cta-button-secondary min-h-13 w-full justify-start rounded-full px-6 text-base"
+              variant="outline"
+              size="lg"
+              style={{
+                backgroundColor: 'rgba(255,255,255,0.12)',
+                borderColor: 'rgba(255,255,255,0.25)',
+                color: '#fffaf0'
+              }}
+              asChild
+            >
               <a href="https://wa.me/9779843633002" target="_blank" rel="noreferrer">
                 <MessageCircle aria-hidden="true" />
                 WhatsApp
@@ -450,50 +489,56 @@ function SiteFooter() {
 
   return (
     <motion.footer
-      className="premium-footer"
+      className="premium-footer border-t border-[#dcb65d]/20 bg-[#071c12] py-16 text-[#fffdf6] sm:py-20"
+      style={{ backgroundColor: '#071c12' }}
       initial={shouldReduceMotion ? false : { opacity: 0, y: 14 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.08 }}
       transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
     >
-      <div className="mx-auto w-full max-w-[90rem] px-4 sm:px-6 lg:px-8">
-        <div className="premium-footer-grid grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-[1.35fr_0.75fr_0.75fr_1.15fr] lg:gap-12">
-          <div className="premium-footer-brand">
-            <a className="premium-footer-logo" href="#" aria-label="Pranam Agro Foods home">
-              <Image src="/images/logo.png" alt="Pranam Agro Foods" width={180} height={72} sizes="180px" />
+      <div className="mx-auto w-full max-w-[80rem] px-4 sm:px-6 lg:px-8">
+        <div className="premium-footer-grid grid grid-cols-1 gap-x-10 gap-y-12 sm:grid-cols-2 lg:grid-cols-[1.25fr_0.75fr_0.75fr_1.15fr] lg:gap-x-14">
+          <div className="premium-footer-brand max-w-sm">
+            <a className="premium-footer-logo inline-flex max-w-48 rounded-2xl bg-[#fffdf5] p-3" href="#" aria-label="Pranam Agro Foods home">
+              <Image className="h-auto w-full object-contain" src="/images/logo.png" alt="Pranam Agro Foods" width={180} height={72} sizes="(max-width: 40rem) 160px, 192px" />
             </a>
-            <h2>Pranam Agro Foods</h2>
-            <p>Natural fruit, vegetable, and dry fruit products for healthy everyday living.</p>
+            <h2 style={{ color: '#fffaf0' }}>Pranam Agro Foods</h2>
+            <p style={{ color: 'rgba(255,250,240,0.76)' }}>Natural fruit, vegetable, and dry fruit products for healthy everyday living.</p>
           </div>
 
-          <nav className="premium-footer-column" aria-label="Product links">
-            <h3>Products</h3>
-            <a href="#products">Fruit Powders</a>
-            <a href="#products">Vegetable Powders</a>
-            <a href="#products">Dry Fruit Chips</a>
-            <a href="#products">Date Seed Coffee</a>
+          <nav className="premium-footer-column flex flex-col items-start gap-3" aria-label="Product links">
+            <h3 style={{ color: '#fffaf0' }}>Products</h3>
+            <a style={{ color: 'rgba(255,250,240,0.82)' }} href="#products">Fruit Powders</a>
+            <a style={{ color: 'rgba(255,250,240,0.82)' }} href="#products">Vegetable Powders</a>
+            <a style={{ color: 'rgba(255,250,240,0.82)' }} href="#products">Dry Fruit Chips</a>
+            <a style={{ color: 'rgba(255,250,240,0.82)' }} href="#products">Date Seed Coffee</a>
           </nav>
 
-          <nav className="premium-footer-column" aria-label="Company links">
-            <h3>Company</h3>
-            <a href="#">About</a>
-            <a href="#why">Why Pranam</a>
-            <a href="#process">Our Process</a>
-            <a href="#contact">Contact</a>
+          <nav className="premium-footer-column flex flex-col items-start gap-3" aria-label="Company links">
+            <h3 style={{ color: '#fffaf0' }}>Company</h3>
+            <a style={{ color: 'rgba(255,250,240,0.82)' }} href="#">About</a>
+            <a style={{ color: 'rgba(255,250,240,0.82)' }} href="#why">Why Pranam</a>
+            <a style={{ color: 'rgba(255,250,240,0.82)' }} href="#process">Our Process</a>
+            <a style={{ color: 'rgba(255,250,240,0.82)' }} href="#contact">Contact</a>
           </nav>
 
-          <div className="premium-footer-column premium-footer-contact">
-            <h3>Contact</h3>
-            <address>
-              <span><MapPin aria-hidden="true" />Kamalbinayak 10, Bhaktapur, Nepal</span>
-              <a href="tel:+9779843633002"><Phone aria-hidden="true" />+977-9843633002</a>
-              <a href="mailto:hello@pranamagrofoods.com"><Mail aria-hidden="true" />hello@pranamagrofoods.com</a>
-              <span><Store aria-hidden="true" />Wholesale &amp; retail available</span>
+          <div className="premium-footer-column premium-footer-contact flex min-w-0 flex-col items-start gap-3">
+            <h3 style={{ color: '#fffaf0' }}>Contact</h3>
+            <address className="grid w-full gap-4 not-italic" style={{ color: 'rgba(255,250,240,0.82)' }}>
+              <span className="flex items-start gap-3" style={{ color: 'rgba(255,250,240,0.82)' }}><MapPin className="mt-1 size-4 shrink-0" aria-hidden="true" />Kamalbinayak 10, Bhaktapur, Nepal</span>
+              <a className="flex items-start gap-3" style={{ color: 'rgba(255,250,240,0.82)' }} href="tel:+9779843633002"><Phone className="mt-1 size-4 shrink-0" aria-hidden="true" />+977-9843633002</a>
+              <a className="flex min-w-0 items-start gap-3 break-all" style={{ color: 'rgba(255,250,240,0.82)' }} href="mailto:hello@pranamagrofoods.com"><Mail className="mt-1 size-4 shrink-0" aria-hidden="true" />hello@pranamagrofoods.com</a>
+              <span className="flex items-start gap-3" style={{ color: 'rgba(255,250,240,0.82)' }}><Store className="mt-1 size-4 shrink-0" aria-hidden="true" />Wholesale &amp; retail available</span>
             </address>
           </div>
         </div>
 
-        <div className="premium-footer-bottom">© 2026 Pranam Agro Foods. All rights reserved.</div>
+        <div
+          className="premium-footer-bottom mt-14 border-t border-white/10 pt-6 text-sm"
+          style={{ color: 'rgba(255,250,240,0.7)' }}
+        >
+          © 2026 Pranam Agro Foods. All rights reserved.
+        </div>
       </div>
     </motion.footer>
   );
